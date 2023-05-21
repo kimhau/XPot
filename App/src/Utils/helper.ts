@@ -1,8 +1,7 @@
-function randomIntFromInterval(min: number, max: number) {
+function randomIntFromInterval() {
   // min and max included
 
-  const val = Math.floor(Math.random() * (max - min + 1) + min);
-  return val.toString();
+  return Math.floor(Math.random() * 8) + 2;
 }
 
-export {randomIntFromInterval};
+export { randomIntFromInterval };
