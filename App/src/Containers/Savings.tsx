@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ImageBackground, Text, View } from 'react-native';
 import { background } from '../Asset/bgImage';
-import { CustomButton, Header } from '../Component';
+import { CustomButton, CustomPopup, Header } from '../Component';
 
 interface ISavingsProps {
   navigation: any;
@@ -9,6 +9,7 @@ interface ISavingsProps {
 }
 function Savings({ navigation, route }: ISavingsProps) {
   console.log(route);
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <ImageBackground
       source={{ uri: background.image }}
@@ -87,12 +88,20 @@ function Savings({ navigation, route }: ISavingsProps) {
               <CustomButton
                 text={`Give up challenge`}
                 type="secondary"
-                onPress={() => {}}
+                onPress={() => {
+                  setShowModal(!showModal);
+                }}
               />
             </View>
           </View>
         </ImageBackground>
       </View>
+      <CustomPopup
+        visible={showModal}
+        hideModal={() => {
+          setShowModal(!showModal);
+        }}
+      />
     </ImageBackground>
   );
 }
