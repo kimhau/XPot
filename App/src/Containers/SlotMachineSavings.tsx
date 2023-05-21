@@ -47,7 +47,16 @@ function SlotMachineSavings({ navigation }: ISlotMachineSavings) {
           ref={slotRef}
           text={11111}
           renderContent={(c: any) => (
-            <Text style={{ fontSize: 25 }}>{symbols[c]}</Text>
+            <Text
+              style={{
+                fontSize: 45,
+                color: 'white',
+                textShadowColor: 'black',
+                textShadowRadius: 9,
+              }}
+            >
+              {symbols[c]}
+            </Text>
           )}
           height={100}
           width={50}
@@ -130,7 +139,7 @@ const smStyles = StyleSheet.create({
     borderRadius: 8,
   },
   text: {
-    fontSize: 72,
+    fontSize: 90,
     top: -2,
     fontWeight: 'bold',
     borderRadius: 8,

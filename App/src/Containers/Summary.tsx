@@ -75,7 +75,9 @@ function Summary({ navigation, route }: ISummaryProps) {
             <CustomButton
               text="Back to home"
               type="secondary"
-              onPress={() => {}}
+              onPress={() => {
+                navigation.push('XBank');
+              }}
             />
           </View>
         </View>

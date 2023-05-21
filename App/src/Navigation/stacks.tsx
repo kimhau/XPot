@@ -1,6 +1,10 @@
 import React from 'react';
-import { Savings, SlotMachineSavings, XBankLanding } from '../Containers/index';
-import Summary from '../Containers/Summary';
+import {
+  Savings,
+  SlotMachineSavings,
+  Summary,
+  XBankLanding,
+} from '../Containers/index';
 import { IStacks } from '../Modals';
 
 export const STACKS: IStacks[] = [
