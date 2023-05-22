@@ -13,8 +13,10 @@ import {
   persistStore,
 } from "redux-persist";
 import { api } from "../Services/api";
+import { authSlice } from "./Slices/Auth";
 
 const reducers = combineReducers({
+  auth: authSlice.reducer,
   [api.reducerPath]: api.reducer,
 });
 
@@ -65,3 +67,4 @@ const persistor = persistStore(store);
 setupListeners(store.dispatch);
 
 export { store, persistor };
+export type RootState = ReturnType<typeof persistedReducer>;

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import React from "react";
+import { Text, TouchableOpacity } from "react-native";
 
 interface ICustomButton {
   onPress: () => void;
-  type: 'secondary' | 'primary';
+  type: "secondary" | "primary";
   text: string;
   disabled?: boolean;
 }
@@ -15,15 +15,15 @@ function CustomButton({ onPress, type, text, disabled }: ICustomButton) {
       activeOpacity={0.7}
       disabled={disabled}
       style={[
-        type === 'primary'
-          ? { backgroundColor: '#D0BCFF' }
+        type === "primary"
+          ? { backgroundColor: "#D0BCFF" }
           : {
-              backgroundColor: 'transparent',
+              backgroundColor: "transparent",
               borderWidth: 1,
-              borderColor: '#D0BCFF',
+              borderColor: "#D0BCFF",
             },
         {
-          justifyContent: 'center',
+          justifyContent: "center",
           height: 40,
           borderRadius: 100,
         },
@@ -31,8 +31,8 @@ function CustomButton({ onPress, type, text, disabled }: ICustomButton) {
     >
       <Text
         style={[
-          type === 'primary' ? { color: '#381E72' } : { color: '#D0BCFF' },
-          { textAlign: 'center' },
+          type === "primary" ? { color: "#381E72" } : { color: "#D0BCFF" },
+          { textAlign: "center", fontWeight: "500" },
         ]}
       >
         {text}

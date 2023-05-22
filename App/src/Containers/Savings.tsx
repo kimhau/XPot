@@ -1,25 +1,27 @@
-import React, { useState } from 'react';
-import { ImageBackground, Text, View } from 'react-native';
-import { background } from '../Asset/bgImage';
-import { CustomButton, CustomPopup, Header } from '../Component';
+import React, { useState } from "react";
+import { ImageBackground, Text, View } from "react-native";
+import { background } from "../Asset/bgImage";
+import { CustomButton, CustomPopup, Header } from "../Component";
+import { useChallengeMutation } from "../Services/challenge";
 
 interface ISavingsProps {
   navigation: any;
   route: any;
 }
 function Savings({ navigation, route }: ISavingsProps) {
+  const [challenge] = useChallengeMutation();
   console.log(route);
   const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <ImageBackground
       source={{ uri: background.image }}
       resizeMode="cover"
-      style={{ flex: 1, backgroundColor: 'black' }}
+      style={{ flex: 1, backgroundColor: "black" }}
     >
       <Header />
       <View style={{ flex: 1 }}>
         <ImageBackground
-          source={require('../Asset/manycoins.gif')}
+          source={require("../Asset/manycoins.gif")}
           style={{ flex: 1 }}
         >
           <View
@@ -30,9 +32,9 @@ function Savings({ navigation, route }: ISavingsProps) {
           >
             <Text
               style={{
-                textAlign: 'center',
-                color: 'white',
-                fontWeight: '400',
+                textAlign: "center",
+                color: "white",
+                fontWeight: "400",
                 fontSize: 45,
               }}
             >
@@ -42,26 +44,26 @@ function Savings({ navigation, route }: ISavingsProps) {
           {/**put coin image here */}
 
           <ImageBackground
-            source={require('../Asset/coin.png')}
+            source={require("../Asset/coin.png")}
             style={{
               height: 200,
               width: 200,
-              alignSelf: 'center',
+              alignSelf: "center",
             }}
             resizeMode="contain"
           >
             <View
               style={{
                 height: 180,
-                justifyContent: 'center',
+                justifyContent: "center",
               }}
             >
               <Text
                 style={{
-                  color: 'black',
-                  fontWeight: '900',
+                  color: "black",
+                  fontWeight: "900",
                   fontSize: 60,
-                  textAlign: 'center',
+                  textAlign: "center",
                 }}
               >{`$${route.params.slotValue}`}</Text>
             </View>
@@ -70,7 +72,7 @@ function Savings({ navigation, route }: ISavingsProps) {
           <View
             style={{
               flex: 1,
-              justifyContent: 'flex-end',
+              justifyContent: "flex-end",
             }}
           >
             <View style={{ padding: 16, paddingBottom: 0 }}>
@@ -78,9 +80,25 @@ function Savings({ navigation, route }: ISavingsProps) {
                 text={`Let's save!`}
                 type="primary"
                 onPress={() => {
-                  navigation.push('Summary', {
-                    totalAcc: route.params.slotValue,
+                  console.log("haha");
+                  console.log({
+                    hasGaveUp: false,
+                    amountsToSave: route.params.slotValues,
                   });
+                  challenge({
+                    hasGaveUp: false,
+                    amountsToSave: route.params.slotValues,
+                  })
+                    .unwrap()
+                    .then((res) => {
+                      console.log(res);
+                      navigation.push("Summary", {
+                        totalAcc: route.params.slotValue,
+                      });
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
                 }}
               />
             </View>
@@ -97,6 +115,16 @@ function Savings({ navigation, route }: ISavingsProps) {
         </ImageBackground>
       </View>
       <CustomPopup
+        action={() => {
+          challenge({
+            hasGaveUp: true,
+            amountsToSave: route.params.slotValues,
+          }).then((res) => {
+            if ("data" in res) {
+              navigation.popToTop();
+            }
+          });
+        }}
         visible={showModal}
         hideModal={() => {
           setShowModal(!showModal);

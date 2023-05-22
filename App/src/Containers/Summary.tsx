@@ -1,14 +1,16 @@
-import React from 'react';
-import { ImageBackground, Text, View } from 'react-native';
-import { background } from '../Asset/bgImage';
-import { potImage } from '../Asset/pot';
-import { CustomButton, Header } from '../Component';
+import React from "react";
+import { ImageBackground, Text, View } from "react-native";
+import { background } from "../Asset/bgImage";
+import { potImage } from "../Asset/pot";
+import { CustomButton, Header } from "../Component";
+import { useSummaryQuery } from "../Services/summary";
 
 interface ISummaryProps {
   navigation: any;
   route: any;
 }
 function Summary({ navigation, route }: ISummaryProps) {
+  const { data: summary } = useSummaryQuery();
   return (
     <View style={{ flex: 1 }}>
       <Header />
@@ -27,14 +29,14 @@ function Summary({ navigation, route }: ISummaryProps) {
         >
           <Text
             style={{
-              textAlign: 'center',
-              color: 'white',
-              fontWeight: '400',
+              textAlign: "center",
+              color: "white",
+              fontWeight: "400",
               fontSize: 45,
               padding: 16,
             }}
           >
-            Total savings for X days
+            {`Total savings for ${summary?.data?.currentStreakDays} days`}
           </Text>
         </View>
         <ImageBackground
@@ -42,30 +44,30 @@ function Summary({ navigation, route }: ISummaryProps) {
           style={{
             height: 200,
             width: 200,
-            alignSelf: 'center',
+            alignSelf: "center",
           }}
           resizeMode="contain"
         >
           <View
             style={{
               height: 180,
-              justifyContent: 'center',
+              justifyContent: "center",
             }}
           >
             <Text
               style={{
-                color: 'black',
-                fontWeight: '900',
+                color: "black",
+                fontWeight: "900",
                 fontSize: 60,
-                textAlign: 'center',
+                textAlign: "center",
               }}
-            >{`$${route.params.totalAcc}`}</Text>
+            >{`$${summary?.data?.currentStreakSavings}`}</Text>
           </View>
         </ImageBackground>
         <View
           style={{
             flex: 1,
-            justifyContent: 'flex-end',
+            justifyContent: "flex-end",
           }}
         >
           <View style={{ padding: 16, paddingBottom: 0 }}>
@@ -76,7 +78,7 @@ function Summary({ navigation, route }: ISummaryProps) {
               text="Back to home"
               type="secondary"
               onPress={() => {
-                navigation.push('XBank');
+                navigation.push("XBank");
               }}
             />
           </View>
