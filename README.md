@@ -1,3 +1,5 @@
+![React Native Boilerplate Release Date](https://img.shields.io/github/release-date/kimhau/XPot)
+![React Native Boilerplate Top Language](https://img.shields.io/github/languages/top/kimhau/XPot)
 # XPot: A Savings Challenge App
 
 ## Introduction
