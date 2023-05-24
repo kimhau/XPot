@@ -24,6 +24,9 @@ Once you have XPot up and running, follow these steps to get started:
 
 3. Watch your savings pot grow as you continue to save. Maintain a long saving streak to challenge yourself.
 
+## Backend Microservice
+XPot integrates with a backend microservice for handling various functionalities. The backend microservice repository can be found [here](https://github.com/Josh-Q/Pentechgon-microservice). Please refer to the backend repository for setup instructions and further details.
+
 ## Technologies Used
 XPot utilizes the following technologies:
 
